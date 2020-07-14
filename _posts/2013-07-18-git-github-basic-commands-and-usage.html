@@ -1,0 +1,60 @@
+---
+layout: post
+title: Git(Hub) basic commands and usage
+date: 2013-07-18 23:53:59.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Other
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: albert.casadessus@gmail.com
+  display_name: albertcasadessus
+  first_name: ''
+  last_name: ''
+permalink: "/2013/07/18/git-github-basic-commands-and-usage/"
+---
+<p><strong><span style="text-decoration: underline;">Create a local repository</span></strong></p>
+<p>Open your project folder in the chttp://www.albertcasadessus.com/wp-admin/post-new.phpommand line. Then:</p>
+<pre lang="bash">
+git init
+# to start a local repo
+touch README
+# Edit it, this file is required
+git add .
+# add all the files
+git commit -m "first commit"
+# do the first commit
+</pre>
+<p><strong><span style="text-decoration: underline;">Push it to GitHub</span></strong></p>
+<pre lang="bash">
+git remote add origin https://github.com/username/project-name.git
+# create a remote repo
+git push origin master
+# push the commit/s to the master branch
+</pre>
+<p><strong><span style="text-decoration: underline;">Clone the repo to work on it from another computer</span></strong></p>
+<p>Open a terminal and go to the desired folder and:</p>
+<pre lang="bash">
+git clone https://github.com/username/project-name.git
+# now you have all the files in that computer, do all the changes
+git commit -a -m "your commit text"
+# commit all the changes
+git push origin master
+# push changes to GitHub
+</pre>
+<p><strong><span style="text-decoration: underline;">Update your local repo with the changes commited on github</span></strong></p>
+<pre lang="bash">
+git pull origin master
+# to update the local files
+</pre>
+<p>Source:</p>
+<ul>
+<li><a href="http://github.com" target="_blank">GitHub</a></li>
+</ul>

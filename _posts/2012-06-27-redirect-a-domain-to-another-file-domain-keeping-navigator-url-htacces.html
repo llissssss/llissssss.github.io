@@ -1,0 +1,37 @@
+---
+layout: post
+title: Redirect a domain to another file domain keeping web browser URL (htaccess)
+date: 2012-06-27 17:12:10.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Configuration file
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: albert.casadessus@gmail.com
+  display_name: albertcasadessus
+  first_name: ''
+  last_name: ''
+permalink: "/2012/06/27/redirect-a-domain-to-another-file-domain-keeping-navigator-url-htacces/"
+---
+<p><strong>Situation</strong>:<br />
+You have a site (eg.<em> www.mysite.com</em>) and a page of this site dedicated to photography (eg. <em>www.mysite.com/photography.html</em>) . For some reason you buy another domain (eg.<em> www.photosite.com</em>) and want to render your <em>photography.html</em> page below this new domain.</p>
+<p><strong>Solution:</strong><br />
+Use a <a title="htaccess manual" href="http://httpd.apache.org/docs/current/howto/htaccess.html" target="_blank">htaccess file</a> running <a title="Apache site" href="http://www.apache.org/" target="_blank">Apache server</a> to solve that. How?</p>
+<pre lang="apache">Options +FollowSymlinks
+RewriteEngine on
+RewriteRule ^$ photography.html [L]
+RewriteRule ^(.*)$ http://www.photosite.com/$1 [P]</pre>
+<p>And upload it to you new domain renaming the name to <em>.htaccess</em> .</p>
+<p><strong>Explanation:</strong></p>
+<ol>
+<li>First rule will redirect <em>www.photosite.com</em> to <em>www.photosite.com/photography.html</em></li>
+<li>Second one will "render" every<em> www.mysite.com/any-site-page.html</em> under domain <em>www.photosite.com</em>, and keeping this url domain even navigating between different pages (that's why there's a [P], standing for <em>Proxy</em>).</li>
+</ol>
+<p>Hope you you find it useful.</p>

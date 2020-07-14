@@ -1,0 +1,103 @@
+---
+layout: post
+title: Creating first app with phonegap apache cordova and jquerymobile
+date: 2012-12-13 19:39:38.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Android
+- HTML5
+- Javascript
+- jQuery
+- Mobile
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: albert.casadessus@gmail.com
+  display_name: albertcasadessus
+  first_name: ''
+  last_name: ''
+permalink: "/2012/12/13/creating-first-app-with-phonegap-apachecordova-and-jquerymobile/"
+---
+<p>It’s kindly obvious that if you are a web developer, it will be easier for you to entry into mobile development using web apps (html5 + JS)  than native code.<br />
+I’m not writing this post to let you figure out all the capabilities and possibilities that web apps gives you instead of native apps, but for me there are. And basing my decision on this I would like to share my code of one of my first test projects/snippets using (in this case) <strong>Android</strong>, <strong>jQuerymobile</strong> and <strong>Apache Cordova / Phonegap</strong> (both names Cordova and Phonegap are used along the post to reference the same).</p>
+<p>All the cited and detailed code below can be forked there:<br />
+<a title="github repo" href="https://github.com/llissssss/wp-feedreader-droidgap" target="_blank">https://github.com/llissssss/wp-feedreader-droidgap</a></p>
+<p>and the working example to install to your phone here:<br />
+<a title="https://github.com/llissssss/wp-feedreader-droidgap/raw/master/bin/Albert%20Casadessus%20feed-reader.apk" href="https://github.com/llissssss/wp-feedreader-droidgap/raw/master/bin/Albert%20Casadessus%20feed-reader.apk" target="_blank">https://github.com/llissssss/wp-feedreader-droidgap/raw/master/bin/Albert%20Casadessus%20feed-reader.apk</a></p>
+<p>The idea is to create a web app which requests all the posts of a wordpress site, and keep them in local storage, providing readability even when you are offline, and to sync with the site and get new posts when necessary.</p>
+<p><strong>What do I need to start?</strong></p>
+<ul>
+<li>A wordpress site for example. I use my own. <a title="http://www.albertcasadessus.com" href="http://www.albertcasadessus.com" target="_blank">http://www.albertcasadessus.com</a></li>
+<li>WP plugin or own WS to retrieve the posts in JSON format. I use JSON API wp plugin (<a title="http://wordpress.org/extend/plugins/json-api/" href="http://wordpress.org/extend/plugins/json-api/" target="_blank">http://wordpress.org/extend/plugins/json-api/</a>)</li>
+<li> Android SDK installed and configured.<a title=" http://developer.android.com/sdk/installing/index.html" href=" http://developer.android.com/sdk/installing/index.html" target="_blank"> http://developer.android.com/sdk/installing/index.html</a></li>
+<li>Phonegap configured and installed to your project.  (extremely easy) <a title="http://docs.phonegap.com/en/2.2.0/guide_getting-started_android_index.md.html#Getting%20Started%20with%20Android" href="http://docs.phonegap.com/en/2.2.0/guide_getting-started_android_index.md.html#Getting%20Started%20with%20Android" target="_blank">http://docs.phonegap.com/en/2.2.0/guide_getting-started_android_index.md.html#Getting%20Started%20with%20Android</a></li>
+</ul>
+<p><strong>Create project</strong></p>
+<p>Then create a project, with one empty activity. Then, edit your <strong>MainActivity.java</strong> to look like:</p>
+<pre lang="java">package com.albertcasadessus.albert.casadessus.feed_reader;
+
+import android.os.Bundle;
+import org.apache.cordova.DroidGap;
+import android.app.Activity;
+import android.view.Menu;
+
+public class MainActivity extends DroidGap {
+
+@Override
+public void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+super.loadUrl("file:///android_asset/www/index.html");
+}
+
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+getMenuInflater().inflate(R.menu.activity_main, menu);
+return true;
+}
+}</pre>
+<p>In <em>/assets/www/</em> you should create your index.html file.<br />
+At this point, <del>you don’t need to code java or change android parameters anymore</del>, well I’m mistaken, you need to modify your <strong>AndroidMAnifest.xml</strong> to add the permissions we’ll request to use on our app:</p>
+<pre lang="xml">
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.VIBRATE" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.RECEIVE_SMS" />
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+<uses-permission android:name="android.permission.RECORD_VIDEO" />
+<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+<uses-permission android:name="android.permission.READ_CONTACTS" />
+<uses-permission android:name="android.permission.WRITE_CONTACTS" />   
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />   
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+<uses-permission android:name="android.permission.BROADCAST_STICKY" />
+</pre>
+<p>Not all of them are necessary. For this project we just need to check the  internet connection, access to read and write local storage, and notifications.</p>
+<p><strong>The code.</strong></p>
+<p>All the needed code is linked git. As I said before, you can also fork the project on github.</p>
+<p><strong>The code (HTML)</strong></p>
+<p>The HTML has no secrets. In &lt;head&gt; I just referenced the necessary files. Body is created using jquerymobile because I didn’t want to spend time creating the visual interface for a test.</p>
+<p><a href="https://github.com/llissssss/wp-feedreader-droidgap/blob/master/assets/www/index.html" title="https://github.com/llissssss/wp-feedreader-droidgap/blob/master/assets/www/index.html">https://github.com/llissssss/wp-feedreader-droidgap/blob/master/assets/www/index.html</a></p>
+<p><strong>The code (JS)</strong></p>
+<p>First line is the one which fires the applications. When phonegap is ready to access phone utils, is launched.</p>
+<pre lang="javascript">document.addEventListener("deviceready", onDeviceReady, false);</pre>
+<p>On that function, I open the database to work with. And I load the data stored in local storage with <strong>getJsonDB()</strong>, and I try to get data from the wordpress site calling <strong>getJsonFromWeb()</strong>, using sqlite and key/value pairs.</p>
+<p><strong>getJsonDB()</strong> , creates the table if not exists (first launch) and tries to retrive the posts stored in local. Calling <strong>processJsonDB()</strong> checks if there’s local data, if not notificates the user using native phone notifications, but If there’s, generates the page content (see <strong>generatePageFromJson()</strong>)</p>
+<p>In parallel, via ajax, I request the posts from the wp site. If request fails and there’s no local data, I show a error, but if not, local posts are displayed.<br />
+If everything went okay, I update the local data via <strong>updateData()</strong> and the page, well the post lists is re-generated with new data calling the previous function <strong>generatePageFromJson()</strong></p>
+<p>Have a look at the code and everything is going to be clearer for you.</p>
+<p><a href="https://github.com/llissssss/wp-feedreader-droidgap/blob/master/assets/www/js/funcions.js" title="https://github.com/llissssss/wp-feedreader-droidgap/blob/master/assets/www/js/funcions.js" target="_blank">https://github.com/llissssss/wp-feedreader-droidgap/blob/master/assets/www/js/funcions.js</a></p>
+<p>Easy isn’t it? I guess you may be thinking why I not compare the posts date in order to decide if there have been changed, but that’s not the aim of project, so please just note about the use of phone utilities such as notifications, checking internet connectivity, and local storage and how easy is to create just once the logic and the interface and being able to use it in all platforms.</p>
+<p>&nbsp;</p>
+<p>To try this example, you can install the app on your phone:</p>
+<p><a title="https://github.com/llissssss/wp-feedreader-droidgap/raw/master/bin/Albert%20Casadessus%20feed-reader.apk" href="https://github.com/llissssss/wp-feedreader-droidgap/raw/master/bin/Albert%20Casadessus%20feed-reader.apk" target="_blank">https://github.com/llissssss/wp-feedreader-droidgap/raw/master/bin/Albert%20Casadessus%20feed-reader.apk</a></p>
+<p>&nbsp;</p>

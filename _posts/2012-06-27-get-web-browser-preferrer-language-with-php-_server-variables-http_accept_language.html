@@ -1,0 +1,57 @@
+---
+layout: post
+title: Get web browser preferred language with PHP $_SERVER variables HTTP_ACCEPT_LANGUAGE
+date: 2012-06-27 18:34:12.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- PHP
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: albert.casadessus@gmail.com
+  display_name: albertcasadessus
+  first_name: ''
+  last_name: ''
+permalink: "/2012/06/27/get-web-browser-preferrer-language-with-php-_server-variables-http_accept_language/"
+---
+<p><strong>HTTP Language headers.</strong><br />
+In php the way to get the language information sent by browser is with <a title="php server vars" href="http://php.net/manual/en/reserved.variables.server.php" target="_blank">server reserved variables</a>.</p>
+<pre lang="php" line="1"><?php echo $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+?></pre>
+<p>Which output (in my browsers):</p>
+<ul>
+<li><strong>ca,en-us;q=0.7,en;q=0.3</strong>  in Mozilla Firefox 13.0.1</li>
+<li><strong>es-ES</strong> in Internet Explorer 9 64b</li>
+<li><strong>ca-ES,ca;q=0.8</strong> in Google Chrome 20.0</li>
+</ul>
+<p>The "<em>q-value</em>" (when it's shown in a value range between 0-1) indicates the percent that the browser prefer this language. If it's not provided, we asume is 1 (maximum).</p>
+<p><strong>How to get the preferred language?</strong><br />
+Here's a simple function I've coded to get the preferred language according <em>q-value</em> in <a href="http://en.wikipedia.org/wiki/ISO_639-1" target="_blank">ISO 639-1 format</a>:</p>
+<pre lang="php" line="1"><?php function GetLanguageCodeISO6391()
+{
+	$hi_code = "";
+	$hi_quof = 0;
+	$langs = explode(",",$_SERVER['HTTP_ACCEPT_LANGUAGE']);
+	foreach($langs as $lang)
+	{
+		list($codelang,$quoficient) = explode(";",$lang);
+		if($quoficient == NULL) $quoficient = 1;
+		if($quoficient?> $hi_quof)
+		{
+			$hi_code = substr($codelang,0,2);
+			$hi_quof = $quoficient;
+		}
+	}
+	return $hi_code;
+}
+
+echo "Your browser preferred language is: ".GetLanguageCodeISO6391();
+?></pre>
+<p>To check what will output in your browser, go to <a title="run demo get language" href="http://www.albertcasadessus.com/wp-content/uploads/getlang_example.php" target="_blank">this demo</a>.</p>
+<p>&nbsp;</p>

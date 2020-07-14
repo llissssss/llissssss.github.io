@@ -1,0 +1,49 @@
+---
+layout: post
+title: Geolocation API with HTML5
+date: 2012-07-20 18:37:10.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- HTML5
+- Mobile
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: albert.casadessus@gmail.com
+  display_name: albertcasadessus
+  first_name: ''
+  last_name: ''
+permalink: "/2012/07/20/geolocation-api-with-html5/"
+---
+<p><a title="geolocation api" href="http://dev.w3.org/geo/api/spec-source.html" target="_blank">Geolocation API </a>and a browser supporting HTML5 location feature, may help you to know geolocation of a visitor (not so much accurate, cause it doesn't use GPS to get location).<br />
+How? Let's take a look to a simple code:</p>
+<pre lang="javascript">
+function GeoHtml5()
+{
+	if (navigator.geolocation)
+        navigator.geolocation.getCurrentPosition(onGetPosition,onErrorPosition);
+	else
+        alert("geo not supported");
+}
+
+function onGetPosition(geolocation)
+{
+    var latitude = geolocation.coords.latitude;
+    var longitude = geolocation.coords.longitude;
+    alert("Your lat: " + latitude + "\nYour long: " +  longitude);
+}
+function onErrorPosition()
+{
+    alert("Error on get position");
+}
+</pre>
+<p>First function, detects if browser supports this feature. Second one is triggered when getting location is OK, second one when it's not. I'm not going to explain inline code, because it's very intuitive and simple.</p>
+<p><a title="geolocation running example" href="http://www.albertcasadessus.com/wp-content/uploads/geolocation_example.html" target="_blank">Here is the code running.</a></p>
+<p>If W3C and browser "companies"  improves it,  it could reduce a little bit more differences with mobile's <strong>web-apps</strong> and <strong>native apps</strong>.</p>
+<p>For more information, visit W3c's <a title="geolocation api" href="http://dev.w3.org/geo/api/spec-source.html" target="_blank">Geolocation API </a> site.</p>

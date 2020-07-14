@@ -1,0 +1,60 @@
+---
+layout: post
+title: 'Reading files with PHP: "auto detect line endings"'
+date: 2012-08-04 11:17:24.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- PHP
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: albert.casadessus@gmail.com
+  display_name: albertcasadessus
+  first_name: ''
+  last_name: ''
+permalink: "/2012/08/04/reading-files-with-php-auto-detect-line-endings/"
+---
+<p>With this PHP code:</p>
+<pre lang="php">
+<?php $fp = @fopen("file.txt", "r");
+if ($fp)
+{
+	$i = 1;
+	while (($line = fgets($fp, 4096)) !== false)
+	{
+		echo "Line ".$i.": ".$line;
+		$i++;
+	}
+}
+?>
+</pre>
+<p>And this file.txt content:</p>
+<pre code="robots">
+aaaaa
+bbbbb
+ccccc
+ddddd
+</pre>
+<p>You expect an output like:</p>
+<pre code="robots">
+Line 1: aaaaa
+Line 2: bbbbb
+Line 3: ccccc
+Line 4: ddddd
+</pre>
+<p>A problem appears when you read a file created in a Mac environment (eg, \r instead of \n ). Then you could get something like:</p>
+<pre code="robots">
+Line 1: aaaaa bbbbb
+Line 2: ccccc
+Line 3: ddddd
+</pre>
+<p>To avoid that and always get a correct (and an expected!) performance, just add this line in the beginning of your code:</p>
+<pre lang="php">
+ini_set("auto_detect_line_endings", true);
+</pre>

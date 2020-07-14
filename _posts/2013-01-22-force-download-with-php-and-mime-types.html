@@ -1,0 +1,211 @@
+---
+layout: post
+title: Force download with PHP and mime types
+date: 2013-01-22 11:46:50.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- PHP
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: albert.casadessus@gmail.com
+  display_name: albertcasadessus
+  first_name: ''
+  last_name: ''
+permalink: "/2013/01/22/force-download-with-php-and-mime-types/"
+---
+<p><em>This is a basic feature post, but I wrote it to keep it handy.</em></p>
+<p>If you need to link a document/picture/video or whatever file in your website, you can do it using an <strong>a</strong>-tag &lt;a href...&gt; link &lt;/a&gt; , but what if you want to force this file to be download by the user instead of be opened by the browser?</p>
+<p>To do that, you'll need to write a <em>bridge</em> script between the page and the file, and then the link as it follows:</p>
+<pre lang="html4strict">
+<a href="download.php?file=filename.jpg">download image</a>
+</pre>
+<p>Then in the file download.php, the important code will be:</p>
+<pre lang="php">
+<?php // .... before that, you should, well
+// must check the file, the path,
+// code injection...
+header('Content-type: application/octet-stream');
+header('Content-Disposition: attachment; filename=name_of_the_file_to_show.jpg"');
+readfile("path/to/".$_GET["file"]);
+?>
+</pre>
+<p>&nbsp;</p>
+<p>You can change the content-type to help browser identifying the file type. Below I attach a list of the most common/used:</p>
+<p>&nbsp;</p>
+<table border="0" cellspacing="0" cellpadding="4">
+<tbody>
+<tr>
+<th>Extension</th>
+<th>Type</th>
+</tr>
+<tr>
+<td>(all files)</td>
+<td>application/octet-stream</td>
+</tr>
+<tr>
+<td>avi</td>
+<td>video/x-msvideo</td>
+</tr>
+<tr>
+<td>bmp</td>
+<td>image/bmp</td>
+</tr>
+<tr>
+<td>css</td>
+<td>text/css</td>
+</tr>
+<tr>
+<td>doc</td>
+<td>application/msword</td>
+</tr>
+<tr>
+<td>dot</td>
+<td>application/msword</td>
+</tr>
+<tr>
+<td>eps</td>
+<td>application/postscript</td>
+</tr>
+<tr>
+<td>gif</td>
+<td>image/gif</td>
+</tr>
+<tr>
+<td>gtar</td>
+<td>application/x-gtar</td>
+</tr>
+<tr>
+<td>gz</td>
+<td>application/x-gzip</td>
+</tr>
+<tr>
+<td>htm</td>
+<td>text/html</td>
+</tr>
+<tr>
+<td>html</td>
+<td>text/html</td>
+</tr>
+<tr>
+<td>ico</td>
+<td>image/x-icon</td>
+</tr>
+<tr>
+<td>jpe</td>
+<td>image/jpeg</td>
+</tr>
+<tr>
+<td>jpeg</td>
+<td>image/jpeg</td>
+</tr>
+<tr>
+<td>jpg</td>
+<td>image/jpeg</td>
+</tr>
+<tr>
+<td>js</td>
+<td>application/x-javascript</td>
+</tr>
+<tr>
+<td>latex</td>
+<td>application/x-latex</td>
+</tr>
+<tr>
+<td>mov</td>
+<td>video/quicktime</td>
+</tr>
+<tr>
+<td>mp2</td>
+<td>video/mpeg</td>
+</tr>
+<tr>
+<td>mp3</td>
+<td>audio/mpeg</td>
+</tr>
+<tr>
+<td>mpa</td>
+<td>video/mpeg</td>
+</tr>
+<tr>
+<td>mpe</td>
+<td>video/mpeg</td>
+</tr>
+<tr>
+<td>mpeg</td>
+<td>video/mpeg</td>
+</tr>
+<tr>
+<td>mpg</td>
+<td>video/mpeg</td>
+</tr>
+<tr>
+<td>pdf</td>
+<td>application/pdf</td>
+</tr>
+<tr>
+<td>pps</td>
+<td>application/vnd.ms-powerpoint</td>
+</tr>
+<tr>
+<td>ppt</td>
+<td>application/vnd.ms-powerpoint</td>
+</tr>
+<tr>
+<td>prf</td>
+<td>application/pics-rules</td>
+</tr>
+<tr>
+<td>ps</td>
+<td>application/postscript</td>
+</tr>
+<tr>
+<td>qt</td>
+<td>video/quicktime</td>
+</tr>
+<tr>
+<td>rtf</td>
+<td>application/rtf</td>
+</tr>
+<tr>
+<td>svg</td>
+<td>image/svg+xml</td>
+</tr>
+<tr>
+<td>swf</td>
+<td>application/x-shockwave-flash</td>
+</tr>
+<tr>
+<td>tgz</td>
+<td>application/x-compressed</td>
+</tr>
+<tr>
+<td>tif</td>
+<td>image/tiff</td>
+</tr>
+<tr>
+<td>tiff</td>
+<td>image/tiff</td>
+</tr>
+<tr>
+<td>txt</td>
+<td>text/plain</td>
+</tr>
+<tr>
+<td>xls</td>
+<td>application/vnd.ms-excel</td>
+</tr>
+<tr>
+<td>zip</td>
+<td>application/zip</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Another way would be using <a title="fileinfo in php.net" href="http://php.net/manual/en/ref.fileinfo.php" target="_blank">fileinfo</a> or other functions available in php to query a file.</p>

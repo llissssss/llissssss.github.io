@@ -1,0 +1,48 @@
+---
+layout: post
+title: 'iOS: How to open links externally with Safari from an app with an embedded
+  webview?'
+date: 2012-04-25 17:05:53.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- iOS
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: albert.casadessus@gmail.com
+  display_name: albertcasadessus
+  first_name: ''
+  last_name: ''
+permalink: "/2012/04/25/ios-how-to-open-links-externally-with-safari-from-an-app-with-an-embedded-webview/"
+---
+<p>Imagine you have an application which consists of an embedded webview that opens few local HTML pages. Perhaps, you will have one or more links which redirect the user to an external webpage, but if you do that, the webview will load the external page, and the user swill "miss" the application and this may confuse them.</p>
+<p>What users expect is the external web page to open in a new window. HTML or Javascript is not enough to do that, but don't panic, just add these few lines to your xcode project:<br />
+In the <strong>webview controller</strong>, inside the <strong>viewDidLoad()</strong> function:</p>
+<pre lang="objc">
+webView.delegate = self;
+</pre>
+<p>Now just add these function in the controller as well:</p>
+<pre lang="objc">
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:
+(NSURLRequest *)request navigationType:(UIWebViewNavigationType)
+navigationType;
+{
+	NSURL *requestURL =[[ request URL ] retain ];
+	if (([ [ requestURL scheme ] isEqualToString: @"http" ])
+	&& (navigationType == UIWebViewNavigationTypeLinkClicked) )
+	{
+		return ![[ UIApplication sharedApplication ]
+		openURL: [ requestURL autorelease ]];
+	}
+	[requestURL release];
+	return YES;
+}
+</pre>
+<p>That will handle the links contained from your html documents in your webview, and will force Safari to open the ones which start with "http".</p>
+<p>Tip: If you want to do the same with links beginning with another <a title="uri scheme" href="http://en.wikipedia.org/wiki/URI_scheme" target="_blank">scheme URI</a> like mailto, skype... just add it in the "if" condition list.</p>

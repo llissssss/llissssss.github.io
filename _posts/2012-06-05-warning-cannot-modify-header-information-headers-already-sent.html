@@ -1,0 +1,84 @@
+---
+layout: post
+title: 'Warning: Cannot modify header information - headers already sent'
+date: 2012-06-05 19:39:22.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- PHP
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: albert.casadessus@gmail.com
+  display_name: albertcasadessus
+  first_name: ''
+  last_name: ''
+permalink: "/2012/06/05/warning-cannot-modify-header-information-headers-already-sent/"
+---
+<p>Sometimes programming with PHP and trying to redirect pages with <em>header("location:".$site);</em> , it's possible to get the following warning:<br />
+<strong>Warning: Cannot modify header information - headers already sent</strong><br />
+This may occur for one of those reasons:</p>
+<ul>
+<li>Start the file with (or including a file which starts with):
+<pre lang="php" line="1">
+<?php // the code starts here, above there's a whitespace
+</pr?>
+</pre>
+</li>
+<li>Having previously in the script (or including a file which have it) whitespaces :
+<pre lang="php" line="1">
+<?php // some example code...
+?>
+
+<?php // more example code lines...
+?>
+</pre>
+</li>
+<li>Print or echo of a variable or text before sending headers.</li>
+<li>HTML code before sending headers.</li>
+<li>A mix of  the above reasons...</li>
+</ul>
+<p>Sometimes, depending on PHP version, everything seems to be okay but when you run the script, it doesn't work. Let's see an example:</p>
+<p><strong>Warning</strong>: Cannot modify header information - headers already sent by (output started at /full/route/to/file/which/previously/has/sent/headers/included.php:xx) in <strong>/full/route/which/has/sending/header/script.php</strong> on line <strong>xx</strong></p>
+<p>In <strong>script.php</strong> there is eg. <em>header("location:script2.php);</em> and apparently headers has sent before in <strong>included.php</strong>.</p>
+<p>In <span style="text-decoration: underline;"><strong>included.php</strong></span>:</p>
+<pre lang="php" line="1">
+<?php // code
+if ($lang== "es")
+{
+	include("spanish.inc.php");
+}
+elseif ($lang== "en")
+{
+	include("english.inc.php");
+}
+// more code
+?>
+</pre>
+<p>Imagine your error is on  include("spanish.inc.php") and obviously the included file is ok (eg. empty). Then why there's an error? Some php versions or apache/iis configurations, make an include (or require, require_once, ...) works as an output buffer. To avoid that, just wrap the "conflictive" code with:</p>
+<p><strong>ob_start();</strong><br />
+// code which have include or require, etc.<br />
+<strong>ob_clean();</strong></p>
+<p><span style="text-decoration: underline;">So, finally In <strong>included.php</strong>:</span></p>
+<pre lang="php" line="1">
+<?php // code
+ob_start();
+if ($lang== "es")
+{
+	include("spanish.inc.php");
+}
+elseif ($lang== "en")
+{
+	include("english.inc.php");
+}
+ob_clean();
+// more code
+?>
+</pre>
+<p>&nbsp;</p>
+<p>More information about those php functions <a title="ob_start php.net" href="http://www.php.net/manual/en/function.ob-start.php" target="_blank">here </a>and <a title="ob_clean php.net" href="http://www.php.net/manual/en/function.ob-clean.php" target="_blank">here</a>.</p>

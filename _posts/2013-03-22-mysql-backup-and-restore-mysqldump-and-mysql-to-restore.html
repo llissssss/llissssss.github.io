@@ -1,0 +1,55 @@
+---
+layout: post
+title: MySQL backup and restore (mysqldump and mysql to restore)
+date: 2013-03-22 18:33:48.000000000 +01:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- MySQL
+tags: []
+meta:
+  _edit_last: '1'
+  _responsive_layout: default
+author:
+  login: admin
+  email: albert.casadessus@gmail.com
+  display_name: albertcasadessus
+  first_name: ''
+  last_name: ''
+permalink: "/2013/03/22/mysql-backup-and-restore-mysqldump-and-mysql-to-restore/"
+---
+<p><strong>mysqldump </strong>is an effective mysql's native way to backup a database. With just a single command you can easily do a backup of your database. Of course, mysql provide as well a way to restore dumps.<br />
+Beyond its native way, it's better to use this way instead of using e.g. <strong>phpmyadmin</strong>. Why? Well, first phpmyadmin don't allow to restore backups from files highers than aproximately 2mb, and has also a limit for the dumps.<br />
+&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">Backup a database.</span></strong></p>
+<p>So to backup a database, just do in a terminal/console:</p>
+<pre lang="mysql">mysqldump -u[user] -p[password] [dbname] &gt; nameofdumpfile.sql</pre>
+<p>This option has more options (like backup all the databases, just some tables/databases, etc). To have a list of them, just query it by using <em>--help</em> flag.<br />
+&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">Restore a database.</span></strong></p>
+<p>Restore a database is quite easy as well:</p>
+<pre lang="mysql">mysql -u[user] -p[password] [dbname] &lt; nameofdumpfile.sql</pre>
+<p>Easy isn't it?<br />
+If your dump file contains a CREATE DATABASE statement, you can avoid the [dbname] param.<br />
+&nbsp;</p>
+<p><strong><span style="text-decoration: underline;">Common problem on restoring a database</span></strong></p>
+<p>If you are trying to restore a database and you get the following error:</p>
+<pre lang="mysql">ERROR 2006 (HY000) at line XX: MySQL server has gone away</pre>
+<p>Most likely you are trying to load a bigger file than <strong>mysql configuration</strong> can handle. To solve that, just edit your mysql configuration file and restart the mysql service.</p>
+<ol>
+<li>Edit the file<em> my.cnf</em> (depending on the version or the OS, folder containing it may change)
+<pre lang="mysql">sudo nano /etc/mysql/my.cnf</pre>
+</li>
+<li>Look for the max_allowed_packet and increase it to fit the size of the file you want to load.
+<pre lang="mysql">[mysqld]
+max_allowed_packet=256M</pre>
+</li>
+<li>And finally restart the <strong>mysql </strong>service
+<pre lang="mysql">/etc/init.d/mysqld restart</pre>
+</li>
+</ol>
+<p>&nbsp;<br />
+Easy as it is, this can avoid you a lot of headaches.</p>

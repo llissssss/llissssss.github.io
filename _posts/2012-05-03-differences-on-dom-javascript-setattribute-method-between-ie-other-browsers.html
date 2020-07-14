@@ -1,0 +1,57 @@
+---
+layout: post
+title: Differences on DOM javascript setAttribute method between IE & other browsers.
+date: 2012-05-03 14:18:55.000000000 +02:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- DOM
+- Javascript
+tags: []
+meta:
+  _edit_last: '1'
+author:
+  login: admin
+  email: albert.casadessus@gmail.com
+  display_name: albertcasadessus
+  first_name: ''
+  last_name: ''
+permalink: "/2012/05/03/differences-on-dom-javascript-setattribute-method-between-ie-other-browsers/"
+---
+<p>Because a project of my job, I'm working in a dinamic creation of a webpage using Javascript to handle DOM.</p>
+<p>Today I realised, that my original code (according to <a title="W3C" href="http://www.w3schools.com/dom/met_element_setattribute.asp" target="_blank">W3C</a>) does not work properly with any version of IE, so for example, originally to create a <em>input</em> element I did:</p>
+<pre lang="javascript" line="1">
+// code
+INPUTELM = document.createElement('input');
+INPUTELM.setAttribute('name', 'codes[]');
+INPUTELM.setAttribute('type', 'text');
+INPUTELM.onkeyup = function(){ChangeSelectArticleByValue(this.value,'article' + (num_linies-1))}
+INPUTELM.setAttribute('class', 'boxes');
+INPUTELM.setAttribute('id', 'code' + (num_linies-1));
+INPUTELM.setAttribute('tabindex',tabIndex);
+// more code
+</pre>
+<p>The class attribute was not set, neither tabindex. After searching for a while I found that I might use (new methods below each one, lines 7 and 10)</p>
+<pre lang="javascript" line="1">
+// code
+INPUTELM = document.createElement('input');
+INPUTELM.setAttribute('name', 'codes[]');
+INPUTELM.setAttribute('type', 'text');
+INPUTELM.onkeyup = function(){ChangeSelectArticleByValue(this.value,'article' + (num_linies-1))}
+INPUTELM.setAttribute('class', 'boxes');
+INPUTELM.className= 'boxes'; // ADDED LINE
+INPUTELM.setAttribute('id', 'code' + (num_linies-1));
+INPUTELM.setAttribute('tabindex',tabIndex);
+INPUTELM.tabIndex = tabIndex; // ADDED LINE
+</pre>
+<p>So mainly it seems that we might:</p>
+<ul>
+<li>Use <em>setAttribute</em> for all most browsers, and the property for IE. Each browser will execute  their code and avoid the other one.</li>
+<li>To set <em>class</em>, use <em>className</em> because "class" is a JS reserved word.</li>
+<li>Note uppercase in two or more words attributes.</li>
+</ul>
+<p>I will edit this post if I deep on this.</p>
+<p>&nbsp;</p>
