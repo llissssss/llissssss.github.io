@@ -15,31 +15,31 @@ permalink: "/2012/04/13/ios-how-to-configure-an-app-for-ad-hoc-distribution/"
 <p><strong>Creating the app ID and the provisioning profile</strong></p>
 <p>Log in with your development username and password to <em>developer.apple.com member center</em>, and go to the <em>Provisioning portal</em>.</p>
 <p>I guess you have your development &amp; distribution certificate, if not, in their related menu options, there's explained how to get one. Then you must choose the <em>App ID's</em> option, and add a new one*:</p>
-<p><a href="http://www.albertcasadessus.com/wp-content/uploads/1_create_app_id.jpg"><img class="alignnone  wp-image-102" title="1_create_app_id" src="{{ site.baseurl }}/assets/1_create_app_id.jpg" alt="" width="620" height="603" /></a><em>*In my case I'm not creating a new one, I'm using the Xcode: Wildcard AppID that's managed by Xcode.</em></p>
+<p><a href="{{ site.baseurl }}/assets/1_create_app_id.jpg"><img class="alignnone  wp-image-102" title="1_create_app_id" src="{{ site.baseurl }}/assets/1_create_app_id.jpg" alt="" width="620" height="603" /></a><em>*In my case I'm not creating a new one, I'm using the Xcode: Wildcard AppID that's managed by Xcode.</em></p>
 <p>After that, go to the <em>Provisioning</em> option, and the <em>Distribution</em> tab. Add a new one.<br />
 Then be sure to check <em>Ad Hoc</em> and write a custom <em>Profile name</em>. Choose the right<em> App ID</em> (the one you created in the previous step) and check the devices where you want to test the app.</p>
-<p><a href="http://www.albertcasadessus.com/wp-content/uploads/2_create_provisioning_profile.jpg"><img class="alignnone  wp-image-110" title="2_create_provisioning_profile" src="{{ site.baseurl }}/assets/2_create_provisioning_profile.jpg" alt="" width="620" height="538" /></a>After that, download the <em>Provisioning Profile</em> and keep it in a known place.</p>
+<p><a href="{{ site.baseurl }}/assets/2_create_provisioning_profile.jpg"><img class="alignnone  wp-image-110" title="2_create_provisioning_profile" src="{{ site.baseurl }}/assets/2_create_provisioning_profile.jpg" alt="" width="620" height="538" /></a>After that, download the <em>Provisioning Profile</em> and keep it in a known place.</p>
 <p><strong>Importing the Provisioning Profile to Xcode and configuring app.</strong></p>
 <p>Now, left the developer.apple.com, and open the project with Xcode. Go to the <em>organizer</em> (Window &gt; Organizer). Then drag  the <em>Provisioning profile</em> you created and downloaded to the <em>Provisioning profile</em>s tab.<strong><br />
 </strong></p>
-<p><a href="http://www.albertcasadessus.com/wp-content/uploads/3_adding_prov_xcode.jpg"><img class="alignnone  wp-image-103" title="3_adding_prov_xcode" src="{{ site.baseurl }}/assets/3_adding_prov_xcode.jpg" alt="" width="620" height="422" /></a></p>
+<p><a href="{{ site.baseurl }}/assets/3_adding_prov_xcode.jpg"><img class="alignnone  wp-image-103" title="3_adding_prov_xcode" src="{{ site.baseurl }}/assets/3_adding_prov_xcode.jpg" alt="" width="620" height="422" /></a></p>
 <p>Now close the <em>organizer</em>, and highlight the project.  Choose the <em>info</em> tab (at the top) and duplicate one of two current configurations, and rename it, for example as Ad Hoc Distribution.</p>
-<p><a href="http://www.albertcasadessus.com/wp-content/uploads/4_setup_xcode1.jpg"><img class="alignnone  wp-image-104" title="4_setup_xcode1" src="{{ site.baseurl }}/assets/4_setup_xcode1.jpg" alt="" width="620" height="369" /></a></p>
+<p><a href="{{ site.baseurl }}/assets/4_setup_xcode1.jpg"><img class="alignnone  wp-image-104" title="4_setup_xcode1" src="{{ site.baseurl }}/assets/4_setup_xcode1.jpg" alt="" width="620" height="369" /></a></p>
 <p>Choose the target (below the project), <em>Summary</em> tab and <span style="text-decoration: line-through;">check Enable Entitlements</span> (just do that, if your project need it, using iCloud for example), a new file project.entitlements will be created (look at the project tree). This file must look like "$(TeamIdentifierPrefix)&lt;project bundle identifier&gt;". If it's not the case, fix them. I cannot explain more on this, because I never used it.</p>
-<p><a href="http://www.albertcasadessus.com/wp-content/uploads/5_setup_xcode2.jpg"><img class="alignnone  wp-image-105" title="5_setup_xcode2" src="{{ site.baseurl }}/assets/5_setup_xcode2.jpg" alt="" width="620" height="840" /></a></p>
+<p><a href="{{ site.baseurl }}/assets/5_setup_xcode2.jpg"><img class="alignnone  wp-image-105" title="5_setup_xcode2" src="{{ site.baseurl }}/assets/5_setup_xcode2.jpg" alt="" width="620" height="840" /></a></p>
 <p>In the <em>Build settings</em> tab, ensure that the value<em> VALID_ARCHS</em>  is set to <em>armv6 armv7</em>. Then sign the code. In apple documentation, it seems that where on image below appears <em>iPhone develope</em>r, it should be a dropdown list with the provisionings, but just let as shown in image.</p>
 <p>In the case you use entitlements, it the different value should be the same as the entitlements file name.</p>
-<p><a href="http://www.albertcasadessus.com/wp-content/uploads/6_setup_xcode3.jpg"><img class="alignnone  wp-image-106" title="6_setup_xcode3" src="{{ site.baseurl }}/assets/6_setup_xcode3.jpg" alt="" width="620" height="358" /></a></p>
+<p><a href="{{ site.baseurl }}/assets/6_setup_xcode3.jpg"><img class="alignnone  wp-image-106" title="6_setup_xcode3" src="{{ site.baseurl }}/assets/6_setup_xcode3.jpg" alt="" width="620" height="358" /></a></p>
 <p>Finally, you just need to fill the <em>Bundle identifier</em> with the same App ID (without the alphanumeric prefix), for example com.albercasadessus.helloworld.</p>
-<p><a href="http://www.albertcasadessus.com/wp-content/uploads/7_setup_xcode4.jpg"><img class="alignnone  wp-image-107" title="7_setup_xcode4" src="{{ site.baseurl }}/assets/7_setup_xcode4.jpg" alt="" width="620" height="334" /></a></p>
+<p><a href="{{ site.baseurl }}/assets/7_setup_xcode4.jpg"><img class="alignnone  wp-image-107" title="7_setup_xcode4" src="{{ site.baseurl }}/assets/7_setup_xcode4.jpg" alt="" width="620" height="334" /></a></p>
 <p>That's all. Now you just need to build and archive. First of all, change the target to<em> iOS Device</em> instead of <em>Simulator</em> (in the dropdown nex to the <em>Run</em> and <em>Stop</em> button). If not appears<em> iOS Device</em>, just disconnect any apple device connected. After that:<br />
 Product &gt; Clean.<br />
 Product &gt; Build.<br />
 Product &gt; Archive.</p>
-<p><a href="http://www.albertcasadessus.com/wp-content/uploads/8_build_archive.jpg"><img class="alignnone  wp-image-108" title="8_build_archive" src="{{ site.baseurl }}/assets/8_build_archive.jpg" alt="" width="620" height="451" /></a><br />
+<p><a href="{{ site.baseurl }}/assets/8_build_archive.jpg"><img class="alignnone  wp-image-108" title="8_build_archive" src="{{ site.baseurl }}/assets/8_build_archive.jpg" alt="" width="620" height="451" /></a><br />
 <em><br />
 Organizer</em> will appear after do <em>Archive</em>. Choose<em> iOS App Store PAckage (.ipa)</em>, and in the dropdown, <span style="text-decoration: underline;">select the <em>provisioning profile</em> you downloaded and created before!</span></p>
-<p><a href="http://www.albertcasadessus.com/wp-content/uploads/9_share_adhoc.jpg"><img class="alignnone  wp-image-109" title="9_share_adhoc" src="{{ site.baseurl }}/assets/9_share_adhoc.jpg" alt="" width="620" height="490" /></a></p>
+<p><a href="{{ site.baseurl }}/assets/9_share_adhoc.jpg"><img class="alignnone  wp-image-109" title="9_share_adhoc" src="{{ site.baseurl }}/assets/9_share_adhoc.jpg" alt="" width="620" height="490" /></a></p>
 <p>A file will be generated. Save together with the <em>provisioning profile</em> on <em>finder</em>. Then send it to the beta-testers (the devices you selected when you created the <em>provisioning profile</em>)</p>
 <p><strong>Install the app for testing in a device.</strong></p>
 <p>That's the easiest part. Just follow this steps:<br />
