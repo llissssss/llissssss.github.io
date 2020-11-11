@@ -4,7 +4,7 @@ title: About me
 layout: page
 ---
 
-![A photo of mine](/assets/albert2.png "Me in a climbing trip")
+![A photo of mine](/assets/albert_horizontal.png "Me in a climbing trip")
 
 
 I am currently leading a team of six people at [Clarabridge]. 
