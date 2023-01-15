@@ -31,41 +31,41 @@ Madrid, churros.
 ![Red - Begur, Illa Roja](/assets/30A_00008.jpg)
 Begur, Illa Roja.
 
-![Calella de Palafrugell - Fishermen houses](/assets/_35_00004.jpg)
+![Calella de Palafrugell - Fishermen houses](/assets/r35_00004.jpg)
 Calella de Palafrugell, Fishermen houses.
 
-![Calella de Palafrugell - More fishermen houses](/assets/_37_00002.jpg)
+![Calella de Palafrugell - More fishermen houses](/assets/r37_00002.jpg)
 Calella de Palafrugell - More fishermen houses.
 
-![Madrid, Palacio de Cristal](/assets/_24_00015.jpg)
+![Madrid, Palacio de Cristal](/assets/r24_00015.jpg)
 Madrid, Palacio de Cristal.
 
-![El Escorial](/assets/_21_00018.jpg)
+![El Escorial](/assets/r21_00018.jpg)
 El Escorial.
 
-![Manzanares el Real](/assets/_19_00020.jpg)
+![Manzanares el Real](/assets/r19_00020.jpg)
 Manzanares el Real, Embalse.
 
-![La Pedriza](/assets/_20_00019.jpg)
+![La Pedriza](/assets/r20_00019.jpg)
 La Pedriza
 
-![Valencia, tiles](/assets/_16_00023.jpg)
+![Valencia, tiles](/assets/r16_00023.jpg)
 Valencia, tiles.
 
-![València, market](/assets/_14_00025.jpg)
+![València, market](/assets/r14_00025.jpg)
 València, market.
 
-![València, beach](/assets/_12_00027.jpg)
+![València, beach](/assets/r12_00027.jpg)
 València, beach.
 
-![València, more beaches.](/assets/_10_00029.jpg)
+![València, more beaches.](/assets/r10_00029.jpg)
 València, more beaches.
 
-![València, the sunset](/assets/__8_00031.jpg)
+![València, the sunset](/assets/r8_00031.jpg)
 València, the sunset.
 
-![València, a tower](/assets/__6_00033.jpg)
+![València, a tower](/assets/r6_00033.jpg)
 València, a tower.
 
-![València, one more plaça](/assets/__1_00038.jpg)
+![València, one more plaça](/assets/r1_00038.jpg)
 València, one more square.
