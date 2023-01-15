@@ -13,7 +13,8 @@ permalink: "/2023/01/15/random-analog-shots-spain/"
 excerpt: Random shots taken during 2021 and 2022 in Spain (Valencia, Madrid and Catalunya).
 ---
 
-Random shots taken during 2021 and 2022 with my Rollei 35mm. The first batch, has this distinct red tone that happens sometimes when the film is expired. Nevertheless, in this case it gives it a special contrast, which I love it.
+Random shots taken during 2021 and 2022 with my Rollei 35mm. The first batch, has this this distinct red tone that happens sometimes when the film is expired. Nevertheless, in this case it gives it a special contrast, which I -despite being completely unintentional this time- love the result.
+
 Locations are under each of the photos.
 
 ![Red - Valencia](/assets/35A_00003.jpg)
