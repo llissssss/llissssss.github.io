@@ -16,26 +16,56 @@ excerpt: Random shots taken during 2021 and 2022 in Spain (Valencia, Madrid and 
 Random shots taken during 2021 and 2022 with my Rollei 35mm. The first batch, has this distinct red tone that happens sometimes when the film is expired. Nevertheless, in this case it gives it a special contrast, which I love it.
 Locations are under each of the photos.
 
-![Madrid](/assets/35A_00003.jpg)
-Elare plelesd sdf sdf dsfsdf
+![Red - Valencia](/assets/35A_00003.jpg)
+Ciuta de València.
 
-![Madrid](/assets/_35_00004.jpg)
-Lorem ipsummmm dolor sit amet
+![Red - València, Old town](/assets/34A_00004.jpg)
+València, Old town.
 
+![Red - València, a square](/assets/36A_00002.jpg)
+València, a square.
 
-![Madrid](/assets/_37_00002.jpg)
-![Madrid](/assets/_24_00015.jpg)
-![Madrid](/assets/_21_00018.jpg)
-![Madrid](/assets/_19_00020.jpg)
-![Madrid](/assets/_20_00019.jpg)
-![Madrid](/assets/_16_00023.jpg)
-![Madrid](/assets/_14_00025.jpg)
-![Madrid](/assets/_12_00027.jpg)
-![Madrid](/assets/_10_00029.jpg)
-![Madrid](/assets/__8_00031.jpg)
-![Madrid](/assets/__6_00033.jpg)
-![Madrid](/assets/__1_00038.jpg)
-![Madrid](/assets/36A_00002.jpg)
-![Madrid](/assets/33A_00005.jpg)
-![Madrid](/assets/30A_00008.jpg)
-![Madrid](/assets/34A_00004.jpg)
+![Red - Madrid, churros](/assets/33A_00005.jpg)
+Madrid, churros.
+
+![Red - Begur, Illa Roja](/assets/30A_00008.jpg)
+Begur, Illa Roja.
+
+![Calella de Palafrugell - Fishermen houses](/assets/_35_00004.jpg)
+Calella de Palafrugell, Fishermen houses.
+
+![Calella de Palafrugell - More fishermen houses](/assets/_37_00002.jpg)
+Calella de Palafrugell - More fishermen houses.
+
+![Madrid, Palacio de Cristal](/assets/_24_00015.jpg)
+Madrid, Palacio de Cristal.
+
+![El Escorial](/assets/_21_00018.jpg)
+El Escorial.
+
+![Manzanares el Real](/assets/_19_00020.jpg)
+Manzanares el Real, Embalse.
+
+![La Pedriza](/assets/_20_00019.jpg)
+La Pedriza
+
+![Valencia, tiles](/assets/_16_00023.jpg)
+Valencia, tiles.
+
+![València, market](/assets/_14_00025.jpg)
+València, market.
+
+![València, beach](/assets/_12_00027.jpg)
+València, beach.
+
+![València, more beaches.](/assets/_10_00029.jpg)
+València, more beaches.
+
+![València, the sunset](/assets/__8_00031.jpg)
+València, the sunset.
+
+![València, a tower](/assets/__6_00033.jpg)
+València, a tower.
+
+![València, one more plaça](/assets/__1_00038.jpg)
+València, one more square.
