@@ -18,7 +18,8 @@ Random shots taken during 2021 and 2022 with my Rollei 35mm. The first batch, ha
 Locations are under each of the photos.
 
 ![Red - Valencia](/assets/35A_00003.jpg)
-Ciuta de València.
+
+Ciutat de València.
 
 ![Red - València, Old town](/assets/34A_00004.jpg)
 València, Old town.
